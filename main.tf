@@ -8,10 +8,12 @@ resource "aws_vpc" "main" {
 
 module "subnets" {
   source = "./subnets"
-  vpc_id = aws_vpc.main.id
-  for_each = var.subnets
+
+  for_each   = var.subnets
+  vpc_id     = aws_vpc.main.id
   cidr_block = each.value["cidr_block"]
+  name       = each.value["name"]
+
   tags = var.tags
-  env = var.env
-  name= each.value["name"]
+  env  = var.env
 }
