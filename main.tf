@@ -18,3 +18,9 @@ module "subnets" {
   tags = var.tags
   env  = var.env
 }
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(var.tags, {name="${var.env}-igw"})
+}
