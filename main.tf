@@ -25,7 +25,7 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_eip" "ngw" {
-  count = lookup(lookup(var.subnets, "public", null ), "cidr_block", 0)
+  count = length(lookup(lookup(var.subnets, "public", null ), "cidr_block", 0))
   domain   = "vpc"
   tags = merge(var.tags, { Name = "${var.env}-ngw" })
 }
