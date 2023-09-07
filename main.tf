@@ -51,6 +51,3 @@ resource "aws_route" "ngw" {
   destination_cidr_block = "0.0.0.0/0"
 }
 
-output "subnets" {
-  value = module.subnets
-}
